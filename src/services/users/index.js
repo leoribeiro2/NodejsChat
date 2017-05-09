@@ -5,7 +5,8 @@ module.exports = (req, res) => {
     .find()
     .then((users) => res.render('users/index', {
       title: 'Users - Node Chat',
-      users
+      users,
+      user_logged: req.user
     }))
     .catch((error) => res.send(`Error ${error}`))
 };

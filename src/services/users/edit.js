@@ -10,7 +10,8 @@ module.exports = (req, res) => {
 
       return res.render('users/edit', {
         title: "Users - Node.js Chat Admin",
-        user
+        user,
+        user_logged: req.user
       })
     })
     .catch((error) => res.send(`Error: ${error}`))

@@ -6,7 +6,9 @@ const path = require('path')
   ,bodyParser = require('body-parser')
   ,hbs = require('express-hbs')
   ,express = require('express')
-  ,mongoose = require('mongoose');
+  ,mongoose = require('mongoose')
+  ,passport = require('passport')
+  ,localStrategy = require('passport-local').Strategy;
 
 module.exports = (app) => {
   app.set('port', 9000);
@@ -39,4 +41,12 @@ module.exports = (app) => {
   }));
 
   mongoose.connect(app.get('mongo_url'), () => console.log('MongoDB Conected!'));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  passport.use(new localStrategy(require('./../../schemas/users').authenticate()));
+  passport.serializeUser(require('./../../schemas/users').serializeUser());
+  passport.deserializeUser(require('./../../schemas/users').deserializeUser());
+
+  require('./../helpers')(hbs);
 };

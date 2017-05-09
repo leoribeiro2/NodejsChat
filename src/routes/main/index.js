@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', require('./../../services/main'));
+const isLoggedIn = require('./../middleware/isloggedin');
 
-module.exports = router
+router.get('/', isLoggedIn, require('./../../services/main'));
+
+module.exports = router;
