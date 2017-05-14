@@ -6,6 +6,7 @@
 * MongoDB
 * Socket.io
 * Gulp
+* Handlebars view engine
 
 
 This project is a basic example of a real-time chat using websocket's. It contains an 
